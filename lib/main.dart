@@ -1,51 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_pro/carousel_pro.dart';
-import 'package:park_bark/custom_widgets/HList.dart';
-import 'package:park_bark/custom_widgets/Products.dart';
+import 'package:park_bark/pages/Categories.dart';
+import 'package:park_bark/pages/HomePage.dart';
+import 'package:park_bark/pages/MyCart.dart';
+import 'package:park_bark/pages/MyAccount.dart';
+import 'package:park_bark/pages/More.dart';
+
 
 void main() {
   runApp(
     MaterialApp(
+      
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         accentColor: Colors.blue,
         primaryColor: Colors.blue,
         primarySwatch: Colors.blue,
+        iconTheme: IconThemeData(color: Colors.blueAccent,),
       ),
-      home: HomePage(),
+      home: LandingPage(),
     ),
   );
 }
 
-class HomePage extends StatefulWidget {
+class LandingPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _LandingPageState createState() => _LandingPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _LandingPageState extends State<LandingPage> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index){
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    Widget image_carousel = new Container(
-      height: 200.0,
-      child: Carousel(
-        boxFit: BoxFit.cover,
-        images: [
-          AssetImage('images/c1.jpg'),
-          AssetImage('images/m1.jpeg'),
-          AssetImage('images/w1.jpeg'),
-          AssetImage('images/w4.jpeg'),
-          AssetImage('images/w3.jpeg'),
-          AssetImage('images/m2.jpg'),
-          AssetImage('images/IMG_1266.JPG'),
-        ],
-        autoplay: false,
-        animationCurve: Curves.fastOutSlowIn,
-        animationDuration: Duration(milliseconds: 1000),
-        dotSize: 2.0,
-        indicatorBgPadding: 2.0,
-        dotColor: Colors.red,
-      ),
-    );
+    List<Widget> _pages = <Widget>[HomePage(),Categories(),MyCart(),MyAccount(),More()];
 
     return Scaffold(
       appBar: AppBar(
@@ -138,23 +131,19 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: ListView(
-        children: <Widget>[
-          image_carousel,
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text('Categories'),
-          ),
-          HList(),
-          Padding(
-            padding: EdgeInsets.all(12.0),
-            child: Text('Categories'),
-          ),
-          Container(
-            height: 320.0,
-            child: Products(),
-          ),
+      body: _pages.elementAt(_selectedIndex),
+      bottomNavigationBar: BottomNavigationBar(
+
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home,color: Colors.blueAccent,),title: Text('Home',style: TextStyle(color: Colors.black),)),
+          BottomNavigationBarItem(icon: Icon(Icons.category,color: Colors.blueAccent,),title: Text('Category',style: TextStyle(color: Colors.black),)),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_basket,color: Colors.blueAccent,),title: Text('cart',style: TextStyle(color: Colors.black),)),
+          BottomNavigationBarItem(icon: Icon(Icons.account_circle,color: Colors.blueAccent,),title: Text('account',style: TextStyle(color: Colors.black),)),
+          BottomNavigationBarItem(icon: Icon(Icons.more_horiz,color: Colors.blueAccent,),title: Text('more',style: TextStyle(color: Colors.black),)),
         ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber,
+        onTap: _onItemTapped,
       ),
     );
   }

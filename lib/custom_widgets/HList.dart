@@ -4,11 +4,10 @@ class HList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
-      width: 100,
+      height: 100,
       child: ListView(
         scrollDirection: Axis.horizontal,
-        itemExtent: 100.0,
+        itemExtent: 80.0,
         children: <Widget>[
           Category(imageLocation:'images/cats/accessories.png',imageCaption:'Accessories'),
           Category(imageLocation:'images/cats/dress.png',imageCaption:'Dress'),
@@ -35,8 +34,9 @@ class Category extends StatelessWidget {
       onTap: (){},
       child: Column(
         children: <Widget>[
-          Image.asset(imageLocation,width: 58,height: 58,),
-          Text(imageCaption)
+          Image.asset(imageLocation,height: 70,),
+          Padding(padding : EdgeInsets.all(2.0)),
+          Text(imageCaption,style: TextStyle(fontSize: 12),)
         ],
       ),
     ),);
