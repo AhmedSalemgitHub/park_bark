@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:park_bark/custom_widgets/HList.dart';
+import 'package:park_bark/custom_widgets/Products.dart';
 
 void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        accentColor: Colors.blue,
+        primaryColor: Colors.blue,
+        primarySwatch: Colors.blue,
+      ),
       home: HomePage(),
     ),
   );
@@ -44,7 +50,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Bark Park'),
-        backgroundColor: Colors.red,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
@@ -141,6 +146,14 @@ class _HomePageState extends State<HomePage> {
             child: Text('Categories'),
           ),
           HList(),
+          Padding(
+            padding: EdgeInsets.all(12.0),
+            child: Text('Categories'),
+          ),
+          Container(
+            height: 320.0,
+            child: Products(),
+          ),
         ],
       ),
     );

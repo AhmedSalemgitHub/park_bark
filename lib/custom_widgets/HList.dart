@@ -10,13 +10,13 @@ class HList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemExtent: 100.0,
         children: <Widget>[
-          Category(image_location:'images/cats/accessories.png',image_caption:'Accessories'),
-          Category(image_location:'images/cats/dress.png',image_caption:'Dress'),
-          Category(image_location:'images/cats/formal.png',image_caption:'Formal'),
-          Category(image_location:'images/cats/informal.png',image_caption:'Informal'),
-          Category(image_location:'images/cats/jeans.png',image_caption:'Jeans'),
-          Category(image_location:'images/cats/shoe.png',image_caption:'Shoe'),
-          Category(image_location:'images/cats/tshirt.png',image_caption:'T-Shirt'),
+          Category(imageLocation:'images/cats/accessories.png',imageCaption:'Accessories'),
+          Category(imageLocation:'images/cats/dress.png',imageCaption:'Dress'),
+          Category(imageLocation:'images/cats/formal.png',imageCaption:'Formal'),
+          Category(imageLocation:'images/cats/informal.png',imageCaption:'Informal'),
+          Category(imageLocation:'images/cats/jeans.png',imageCaption:'Jeans'),
+          Category(imageLocation:'images/cats/shoe.png',imageCaption:'Shoe'),
+          Category(imageLocation:'images/cats/tshirt.png',imageCaption:'T-Shirt'),
         ],
       ),
     );
@@ -24,10 +24,10 @@ class HList extends StatelessWidget {
 }
 
 class Category extends StatelessWidget {
-  final String image_location;
-  final String image_caption;
+  final String imageLocation;
+  final String imageCaption;
 
-  Category({this.image_location,this.image_caption});
+  Category({this.imageLocation,this.imageCaption});
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +35,8 @@ class Category extends StatelessWidget {
       onTap: (){},
       child: Column(
         children: <Widget>[
-          Image.asset(image_location,width: 60,height: 60,),
-          Text(image_caption)
+          Image.asset(imageLocation,width: 58,height: 58,),
+          Text(imageCaption)
         ],
       ),
     ),);
