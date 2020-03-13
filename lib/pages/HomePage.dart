@@ -26,9 +26,10 @@ class _HomePageState extends State<HomePage> {
       autoplay: false,
       animationCurve: Curves.fastOutSlowIn,
       animationDuration: Duration(milliseconds: 1000),
-      dotSize: 2.0,
+      dotSize: 4.0,
       indicatorBgPadding: 2.0,
-      dotColor: Colors.red,
+      dotColor: Colors.blue,
+      dotBgColor: Colors.transparent,
     ),
   );
   @override

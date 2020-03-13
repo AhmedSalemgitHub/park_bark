@@ -8,8 +8,19 @@ class MyAccount extends StatefulWidget {
 class _MyAccountState extends State<MyAccount> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("MyAccount"),
+    return         UserAccountsDrawerHeader(
+      accountName: Text('Ahmed Hassan Salem'),
+      accountEmail: Text('Ahmedsalem.developer@gmail.com'),
+      currentAccountPicture: GestureDetector(
+        child: CircleAvatar(
+          backgroundColor: Colors.grey,
+          child: Icon(
+            Icons.person,
+            color: Colors.white,
+          ),
+        ),
+      ),
+      decoration: BoxDecoration(color: Colors.red),
     );
   }
 }

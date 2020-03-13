@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:park_bark/pages/ProductDetails.dart';
 
 class Products extends StatefulWidget {
   @override
@@ -85,22 +86,30 @@ class SingleProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Hero(
-        tag: productName,
+        tag: productPicture,
         child: Material(
           child: InkWell(
-            onTap: (){},
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ProductDetails(
+                  productDetailName: productName,
+                  productDetailPicture: productPicture,
+                  productDetailPrice: productPrice,
+                  productDetailOldPrice: productOldPrice,
+                ))),
             child: GridTile(
               footer: Container(
-                color: Colors.white70,
-                child: ListTile(
-                  leading: Text(productName,style:TextStyle(fontWeight: FontWeight.bold),),
-                  title: Text("\$$productPrice",style: TextStyle(color: Colors.red,fontWeight: FontWeight.w800),),
-                  subtitle: Text("\$$productOldPrice",style: TextStyle(color: Colors.black45,fontWeight: FontWeight.w800,decoration:
-                  TextDecoration.lineThrough
-                  ),),
-                ),
+                color: Colors.white,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(child: Text(productName,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16.0),),),
+                    Text("\$${productPrice}",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontSize: 16.0),)
+                  ],
+                )
               ),
-              child: Image.asset(productPicture,fit: BoxFit.cover,),
+              child: Image.asset(
+                productPicture,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
