@@ -59,11 +59,14 @@ class _ProductsState extends State<Products> {
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
-          return SingleProduct(
-            productName: productList[index]['name'],
-            productPicture: productList[index]['picture'],
-            productOldPrice: productList[index]['oldPrice'],
-            productPrice: productList[index]['price'],
+          return Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: SingleProduct(
+              productName: productList[index]['name'],
+              productPicture: productList[index]['picture'],
+              productOldPrice: productList[index]['oldPrice'],
+              productPrice: productList[index]['price'],
+            ),
           );
         });
   }

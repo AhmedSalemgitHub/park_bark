@@ -9,9 +9,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   Widget image_carousel = new Container(
-    height: 200.0,
+    height: 180.0,
     child: Carousel(
       boxFit: BoxFit.cover,
       images: [
@@ -32,25 +31,36 @@ class _HomePageState extends State<HomePage> {
       dotBgColor: Colors.transparent,
     ),
   );
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        image_carousel,
-        Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Text('Categories'),
-        ),
-        HList(),
-        Padding(
-          padding: EdgeInsets.all(12.0),
-          child: Text('Recent'),
-        ),
-        Container(
-          height: 320.0,
-          child: Products(),
-        ),
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Bark Park'),
+      ),
+      body: Column(
+        children: <Widget>[
+          image_carousel,
+          Container(
+            alignment: Alignment.center,
+            width: double.infinity,
+            color: Colors.deepPurple,
+            padding: EdgeInsets.all(4.0),
+            child: Text('Categories',style: TextStyle(color: Colors.red),),
+          ),
+          HList(),
+          Container(
+            alignment: Alignment.center,
+            width: double.infinity,
+            color: Colors.deepPurple,
+            padding: EdgeInsets.all(4.0),
+            child: Text('Recent',style: TextStyle(color: Colors.red),),
+          ),
+          Flexible(
+            child: Products(),
+          ),
+        ],
+      ),
     );
   }
 }

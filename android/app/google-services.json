@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "56865798898",
+    "firebase_url": "https://barkpark2020.firebaseio.com",
+    "project_id": "barkpark2020",
+    "storage_bucket": "barkpark2020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56865798898:android:f8fc574cede586cea26e6b",
+        "android_client_info": {
+          "package_name": "online.thecoder.park_bark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56865798898-du40tv3pfeoghrel1o1g3ua1l4v539pc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "online.thecoder.park_bark",
+            "certificate_hash": "9613fbe31def609bd70ec6f1d05a04fe0cb680e8"
+          }
+        },
+        {
+          "client_id": "56865798898-fpn1fei0i6pqrt95q7nluaiobb6np7jb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYZ7pnClzOvmMq4lmGAg-X3Q8iJGC7ttw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56865798898-fpn1fei0i6pqrt95q7nluaiobb6np7jb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
