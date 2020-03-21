@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MyAccount extends StatefulWidget {
+  final FirebaseUser user;
+  MyAccount(this.user);
+
   @override
   _MyAccountState createState() => _MyAccountState();
 }
@@ -9,15 +13,13 @@ class _MyAccountState extends State<MyAccount> {
   @override
   Widget build(BuildContext context) {
     return         UserAccountsDrawerHeader(
-      accountName: Text('Ahmed Hassan Salem'),
-      accountEmail: Text('Ahmedsalem.developer@gmail.com'),
+      accountName: Text(widget.user.displayName),
+      accountEmail: Text(widget.user.email),
       currentAccountPicture: GestureDetector(
         child: CircleAvatar(
           backgroundColor: Colors.grey,
-          child: Icon(
-            Icons.person,
-            color: Colors.white,
-          ),
+          child: Image.network(widget.user.photoUrl)
+          //Icon(Icons.person,color: Colors.white,),
         ),
       ),
       decoration: BoxDecoration(color: Colors.red),
