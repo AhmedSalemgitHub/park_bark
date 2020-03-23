@@ -105,7 +105,7 @@ class SingleProduct extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Expanded(child: Text(productName,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16.0),),),
-                    Text("\$${productPrice}",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontSize: 16.0),)
+                    Text("\$$productPrice",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontSize: 16.0),)
                   ],
                 )
               ),

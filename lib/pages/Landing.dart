@@ -5,7 +5,7 @@ import 'package:park_bark/pages/HomePage.dart';
 import 'package:park_bark/pages/MyCart.dart';
 import 'package:park_bark/pages/MyAccount.dart';
 import 'package:park_bark/pages/More.dart';
-import 'package:park_bark/pages/login.dart';
+
 
 class LandingPage extends StatefulWidget {
   final FirebaseUser user;

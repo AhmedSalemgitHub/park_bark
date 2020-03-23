@@ -9,7 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Widget image_carousel = new Container(
+  Widget imageCarousel = new Container(
     height: 180.0,
     child: Carousel(
       boxFit: BoxFit.cover,
@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: <Widget>[
-          image_carousel,
+          imageCarousel,
           Container(
             alignment: Alignment.center,
             width: double.infinity,
