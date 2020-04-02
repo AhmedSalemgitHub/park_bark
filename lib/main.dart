@@ -6,9 +6,9 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        accentColor: Colors.blue,
-        primaryColor: Colors.blue,
-        primarySwatch: Colors.blue,
+      
+        primaryColor: Colors.brown.shade900,
+
       ),
       home: LogIn(),
     ),
