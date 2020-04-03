@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:park_bark/db/auth.dart';
 import 'package:park_bark/pages/Landing.dart';
 import 'package:park_bark/pages/login.dart';
-import '../util/FireBaseDBServices.dart';
+import '../db/FireBaseDBServices.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -16,6 +17,7 @@ class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
 
   FireBaseDBServices _userServices = FireBaseDBServices();
+  Auth auth = Auth();
 
   final TextEditingController _userNameTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
@@ -43,6 +45,14 @@ class _SignUpState extends State<SignUp> {
             key: _formKey,
             child: Column(
               children: <Widget>[
+// #### The Intro Welcome Text #### //
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8.0,32.0,8.0,8.0),
+                  child: Text("Welcome",style: TextStyle(fontSize: 30.0,color: Colors.blueGrey)),
+                ),
+// #### The Intro Icon #### //
+                Padding(padding: EdgeInsets.all(8.0),
+                child: CircleAvatar(radius: 70.0,child: Icon(Icons.archive),),),
 // #####  the field of the user name
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -64,7 +74,7 @@ class _SignUpState extends State<SignUp> {
                         border: OutlineInputBorder()),
                   ),
                 ),
-// #### the email field
+// #### the email field ### //
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
@@ -85,7 +95,7 @@ class _SignUpState extends State<SignUp> {
                         border: OutlineInputBorder()),
                   ),
                 ),
-// #### the password field
+// #### the password field ### //
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
@@ -111,7 +121,7 @@ class _SignUpState extends State<SignUp> {
               ],
             ),
           ),
-// #### the register button
+// #### the register button ### //
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Material(
@@ -119,7 +129,7 @@ class _SignUpState extends State<SignUp> {
               color: Colors.blue,
               child: MaterialButton(
                 minWidth: MediaQuery.of(context).size.width,
-                onPressed: () async{
+                onPressed: () async {
                   validateForm();
                 },
                 child: Text(
@@ -159,11 +169,14 @@ class _SignUpState extends State<SignUp> {
                     "username": user.displayName,
                     "email": user.email,
                   })
-                }).catchError((err)=>{print(err.toString())}).whenComplete(() => {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LandingPage(user)))
+                })
+            .catchError((err) => {print(err.toString())})
+            .whenComplete(() => {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => LandingPage(user)))
                 });
-
-        
       }
     }
   }

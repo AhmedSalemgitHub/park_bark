@@ -1,7 +1,9 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:park_bark/Provider/userProvider.dart';
 import 'package:park_bark/custom_widgets/HList.dart';
 import 'package:park_bark/custom_widgets/Products.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -9,6 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
   Widget imageCarousel = new Container(
     height: 180.0,
     child: Carousel(
@@ -22,9 +25,7 @@ class _HomePageState extends State<HomePage> {
         AssetImage('images/m2.jpg'),
         AssetImage('images/IMG_1266.JPG'),
       ],
-      autoplay: false,
-      animationCurve: Curves.fastOutSlowIn,
-      animationDuration: Duration(milliseconds: 1000),
+      autoplay: true,
       dotSize: 4.0,
       indicatorBgPadding: 2.0,
       dotColor: Colors.blue,
@@ -34,27 +35,23 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Bark Park'),
-      ),
       body: Column(
         children: <Widget>[
           imageCarousel,
           Container(
             alignment: Alignment.center,
             width: double.infinity,
-            color: Colors.deepPurple,
             padding: EdgeInsets.all(4.0),
-            child: Text('Categories',style: TextStyle(color: Colors.red),),
+            child: Text('Categories',),
           ),
           HList(),
           Container(
             alignment: Alignment.center,
             width: double.infinity,
-            color: Colors.deepPurple,
             padding: EdgeInsets.all(4.0),
-            child: Text('Recent',style: TextStyle(color: Colors.red),),
+            child: Text('Recent',),
           ),
           Flexible(
             child: Products(),

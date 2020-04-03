@@ -4,10 +4,10 @@ import 'package:park_bark/pages/Categories.dart';
 import 'package:park_bark/pages/HomePage.dart';
 import 'package:park_bark/pages/MyCart.dart';
 import 'package:park_bark/pages/MyAccount.dart';
-import 'package:park_bark/pages/More.dart';
 
 
 class LandingPage extends StatefulWidget {
+
   final FirebaseUser user;
   LandingPage(this.user);
 
@@ -25,7 +25,7 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _pages = <Widget>[HomePage(),Categories(),MyCart(),MyAccount(widget.user),More()];
+    List<Widget> _pages = <Widget>[HomePage(),Categories(),MyCart(),MyAccount(widget.user)];
     return Scaffold(
       body: _pages.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
@@ -34,7 +34,7 @@ class _LandingPageState extends State<LandingPage> {
           BottomNavigationBarItem(icon: Icon(Icons.category,),title: Text('Category')),
           BottomNavigationBarItem(icon: Icon(Icons.shopping_basket,),title: Text('cart')),
           BottomNavigationBarItem(icon: Icon(Icons.account_circle,),title: Text('account')),
-          BottomNavigationBarItem(icon: Icon(Icons.more_horiz,),title: Text('more')),
+
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
