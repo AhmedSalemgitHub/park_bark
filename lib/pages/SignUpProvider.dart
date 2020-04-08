@@ -1,7 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:park_bark/Provider/userProvider.dart';
-import 'package:park_bark/pages/login.dart';
+import 'package:park_bark/custom_widgets/Commons.dart';
+import 'package:park_bark/pages/loginWithProvider.dart';
 import 'package:provider/provider.dart';
+
+import 'HomePage.dart';
+import 'Landing.dart';
 
 class SignUpProvider extends StatefulWidget {
   @override
@@ -118,6 +123,8 @@ class _SignUpProviderState extends State<SignUpProvider> {
                               _passwordTextController.text)) {
                             _scaffoldstateKey.currentState.showSnackBar(
                                 SnackBar(content: Text("Sign up failed")));
+                          } else {
+                            replaceScreen(context, LandingPage(user.user));
                           }
                         }
                       },
@@ -152,7 +159,10 @@ class _SignUpProviderState extends State<SignUpProvider> {
                     Padding(
                       padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
                       child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          FirebaseUser googleUser = await user.signInGoogle();
+                          replaceScreen(context, LandingPage(googleUser));
+                        },
                         child: Image.asset(
                           "images/fb.png",
                           width: 80,

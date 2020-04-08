@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:park_bark/Provider/userProvider.dart';
-import 'package:park_bark/pages/Landing.dart';
-import 'package:park_bark/pages/SignUpProvider.dart';
-import 'package:park_bark/pages/login.dart';
+
+import 'Provider/userProvider.dart';
+import 'pages/Landing.dart';
+import 'pages/SignUpProvider.dart';
 import 'package:provider/provider.dart';
+import 'Provider/appProvider.dart';
+import 'pages/loginWithProvider.dart';
 
 void main() {
+  
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => UserProvider.initialize(),
+      
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: UserProvider.initialize()),
+        ChangeNotifierProvider.value(value: AppProvider()),
+      ],
+      
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: ScreenController(),
@@ -16,6 +25,10 @@ void main() {
     ),
   );
 }
+
+
+///the screen controller to decide which screen to move to based on 
+///the user authintication status.
 
 class ScreenController extends StatelessWidget {
   @override

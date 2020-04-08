@@ -1,7 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:park_bark/pages/signup.dart';
 import 'package:park_bark/Provider/userProvider.dart';
+import 'package:park_bark/custom_widgets/Commons.dart';
+import 'package:park_bark/pages/SignUpProvider.dart';
 import 'package:provider/provider.dart';
+
+import 'Landing.dart';
 
 class LogIn extends StatefulWidget {
   @override
@@ -9,6 +13,7 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
+
   final _formKey = GlobalKey<FormState>();
   final _scaffoldstateKey = GlobalKey<ScaffoldState>();
   final TextEditingController _emailTextController = TextEditingController();
@@ -91,25 +96,13 @@ class _LogInState extends State<LogIn> {
                               if(!await user.signIn(_emailTextController.text, _passwordTextController.text)){
                                   _scaffoldstateKey.currentState.showSnackBar(SnackBar(content: Text("Sign in failed")));
                               }
+                              else{
+                              replaceScreen(context, LandingPage(user.user));
+                            }
                             }
                           },
                           child: Text(
                             "Sign In",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Material(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.red,
-                        child: MaterialButton(
-                          minWidth: MediaQuery.of(context).size.width,
-                          onPressed: () {},
-                          child: Text(
-                            "Sign in using Google Account",
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
@@ -121,12 +114,12 @@ class _LogInState extends State<LogIn> {
                         child: Text(
                           "Do not have account ? Sign Up",
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: TextStyle(color: Colors.black, fontSize: 20),
                         ),
                         onTap: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => SignUp()));
+                                  builder: (context) => SignUpProvider()));
                         },
                       ),
                     ),
@@ -139,7 +132,10 @@ class _LogInState extends State<LogIn> {
                         Padding(
                           padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
                           child: MaterialButton(
-                            onPressed: () {},
+                            onPressed: () async{
+                              FirebaseUser googleUser = await user.signInGoogle();
+                              replaceScreen(context, LandingPage(googleUser));
+                            },
                             child: Image.asset(
                               "images/fb.png",
                               width: 80,
