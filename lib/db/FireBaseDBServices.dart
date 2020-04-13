@@ -4,7 +4,7 @@ class FireBaseDBServices {
   Firestore _firestore = Firestore.instance;
   String collection = "users";
 
-  createUser(String uid,Map value) {
+  createUser(String uid,Map<String,dynamic> value) {
     _firestore
         .collection(collection)
         .document(uid)

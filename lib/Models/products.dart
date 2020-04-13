@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Product {
   static const ID = "id";
   static const NAME = "name";
@@ -30,8 +28,7 @@ class Product {
   bool get featured => _featured;
 
   // constructor
-  Product.fromSnapShot(DocumentSnapshot snapshot) {
-    Map data = snapshot.data;
+  Product.fromJson(Map<String,dynamic> data) {
     _id = data[ID];
     _name = data[NAME];
     _price = data[PRICE];

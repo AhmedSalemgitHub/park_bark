@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:park_bark/Models/user.dart';
 import 'package:park_bark/db/FireBaseDBServices.dart';
 
 enum Status { Uninitialized, Authinticated, Authinticating, UnAuthinticated }
@@ -25,7 +26,9 @@ class UserProvider with ChangeNotifier {
     try {
       _status = Status.Authinticated;
       notifyListeners();
-      _user = (await _auth.signInWithEmailAndPassword(email: email, password: password)).user;
+      _user = (await _auth.signInWithEmailAndPassword(
+              email: email, password: password))
+          .user;
       return true;
     } catch (e) {
       _status = Status.UnAuthinticated;
@@ -40,12 +43,18 @@ class UserProvider with ChangeNotifier {
       _user = (await _auth.createUserWithEmailAndPassword(
               email: email, password: password))
           .user;
-      Map<String, dynamic> data = {
-        "userId": user.uid,
-        "name": name,
-        "email": email,
-        "photo": user.photoUrl
-      };
+
+      Map<String, dynamic> data = User.toJson(
+          id: user.uid,
+          email: email,
+          age: 0,
+          orders: [],
+          name: name,
+          phone: '',
+          photo: '',
+          registerMethod: 'email',
+          reviews: [],
+          userCart: []);
       _userService.createUser(user.uid, data);
       _status = Status.Authinticated;
       notifyListeners();
@@ -58,7 +67,7 @@ class UserProvider with ChangeNotifier {
     }
   }
 
-    Future<FirebaseUser> signInGoogle() async {
+  Future<FirebaseUser> signInGoogle() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
 
     final GoogleSignInAuthentication googleAuth =
@@ -83,7 +92,7 @@ class UserProvider with ChangeNotifier {
         Firestore.instance.collection("users").document(user.uid).setData({
           "id": user.uid,
           "name": user.displayName,
-          "mail":user.email,
+          "mail": user.email,
           "pic": user.photoUrl,
         });
       }

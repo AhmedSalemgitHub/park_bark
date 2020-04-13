@@ -4,8 +4,6 @@ import 'package:park_bark/Provider/userProvider.dart';
 import 'package:park_bark/custom_widgets/Commons.dart';
 import 'package:park_bark/pages/loginWithProvider.dart';
 import 'package:provider/provider.dart';
-
-import 'HomePage.dart';
 import 'Landing.dart';
 
 class SignUpProvider extends StatefulWidget {

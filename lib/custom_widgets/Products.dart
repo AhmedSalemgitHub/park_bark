@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:park_bark/custom_widgets/Commons.dart';
 import 'package:park_bark/pages/ProductDetails.dart';
+import 'package:park_bark/pages/detail_page.dart';
 
 class Products extends StatefulWidget {
   @override
@@ -11,10 +12,12 @@ class Products extends StatefulWidget {
 class _ProductsState extends State<Products> {
   List<Widget> productListBuilder(AsyncSnapshot snapshot) {
     return snapshot.data.documents.map<Widget>((document) {
-      return Padding(
+      return snapshot.connectionState == ConnectionState.none ?
+      Padding(padding: EdgeInsets.all(8.0),child: CircularProgressIndicator(), ):
+      Padding(
         padding: const EdgeInsets.all(4.0),
         child: InkWell(
-          onTap: (){changeScreen(context, ProductDetails());},
+          onTap: (){changeScreen(context, DetailsPage());},
           child: GridTile(
             footer: Container(
                 color: Colors.white,

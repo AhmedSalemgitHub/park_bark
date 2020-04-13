@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:park_bark/Services/firestore_service.dart';
 
 import 'Provider/userProvider.dart';
 import 'pages/Landing.dart';
 import 'pages/SignUpProvider.dart';
 import 'package:provider/provider.dart';
-import 'Provider/appProvider.dart';
 import 'pages/loginWithProvider.dart';
 
 void main() {
   
   WidgetsFlutterBinding.ensureInitialized();
+  
+  FirestoreService _db = FirestoreService();
+
   runApp(
-      
     MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: UserProvider.initialize()),
-        ChangeNotifierProvider.value(value: AppProvider()),
+        StreamProvider(create: (BuildContext context) => _db.getCategory()),
+        StreamProvider(create: (BuildContext context) => _db.getBrand()),
+        StreamProvider(create: (BuildContext context) => _db.getProduct()),
       ],
       
       child: MaterialApp(
