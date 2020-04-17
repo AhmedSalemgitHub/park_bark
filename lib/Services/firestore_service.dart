@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -45,6 +44,16 @@ class FirestoreService {
             .toList());
   }
 
+  Stream<List<Product>> getSingleUser(String uid) {
+    return _db
+        .collection(_userRef)
+        .orderBy(uid, descending: true)
+        .snapshots()
+        .map((snapshot) => snapshot.documents
+            .map((document) => Product.fromJson(document.data))
+            .toList());
+  }
+
   Future<void> addCategory(String name) {
     var dataMap = Map<String, dynamic>();
     dataMap['id'] = id.v1();
@@ -57,6 +66,10 @@ class FirestoreService {
     dataMap['id'] = id.v1();
     dataMap['name'] = name;
     return _db.collection(_brandRef).add(dataMap);
+  }
+
+  Future<void> addUser(String uid, Map<String, dynamic> data) {
+    return _db.collection(_userRef).add(data);
   }
 
   Future<void> removeCategoty(String uid) {
@@ -153,13 +166,5 @@ class FirestoreService {
       ],
     );
     showDialog(context: context, builder: (_) => alert);
-  }
-
-  createUser(String uid,Map<String,dynamic> value) {
-    _db
-        .collection(_userRef)
-        .document(uid)
-        .setData(value)
-        .catchError((e) => {print(e.toString())});
   }
 }

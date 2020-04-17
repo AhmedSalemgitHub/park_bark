@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:park_bark/Models/user.dart';
-import 'package:park_bark/db/FireBaseDBServices.dart';
 
 enum Status { Uninitialized, Authinticated, Authinticating, UnAuthinticated }
 
@@ -12,7 +11,6 @@ class UserProvider with ChangeNotifier {
   FirebaseAuth _auth;
   FirebaseUser _user;
   Status _status = Status.Uninitialized;
-  FireBaseDBServices _userService = FireBaseDBServices();
   GoogleSignIn _googleSignIn = GoogleSignIn();
 
   UserProvider.initialize() : _auth = FirebaseAuth.instance {
@@ -43,19 +41,6 @@ class UserProvider with ChangeNotifier {
       _user = (await _auth.createUserWithEmailAndPassword(
               email: email, password: password))
           .user;
-
-      Map<String, dynamic> data = User.toJson(
-          id: user.uid,
-          email: email,
-          age: 0,
-          orders: [],
-          name: name,
-          phone: '',
-          photo: '',
-          registerMethod: 'email',
-          reviews: [],
-          userCart: []);
-      _userService.createUser(user.uid, data);
       _status = Status.Authinticated;
       notifyListeners();
       return true;
@@ -83,18 +68,25 @@ class UserProvider with ChangeNotifier {
 
     if (user != null) {
       final QuerySnapshot result = await Firestore.instance
-          .collection("users")
+          .collection("user")
           .where("id", isEqualTo: user.uid)
           .getDocuments();
 
       final List<DocumentSnapshot> document = result.documents;
       if (document.length == 0) {
-        Firestore.instance.collection("users").document(user.uid).setData({
-          "id": user.uid,
-          "name": user.displayName,
-          "mail": user.email,
-          "pic": user.photoUrl,
-        });
+        Firestore.instance.collection("user").document(user.uid).setData(
+              User.toJson(
+                  age: 0,
+                  email: user.email,
+                  id: user.uid,
+                  name: user.displayName,
+                  orders: [],
+                  phone: '',
+                  photo: '',
+                  registerMethod: 'Google',
+                  reviews: [],
+                  userCart: []),
+            );
       }
     }
 

@@ -45,18 +45,17 @@ class User {
       List orders,
       List reviews,
       List userCart}) {
-    Map<String, dynamic> data;
-    data['id'] = id;
-    data['name'] = name;
-    data['age'] = age;
-    data['email'] = email;
-    data['orders'] = orders;
-    data['phone'] = phone;
-    data['photo'] = photo;
-    data['registerMethod'] = registerMethod;
-    data['reviews'] = reviews;
-    data['userCart'] = userCart;
-
-    return data;
+    return {
+      'id': id,
+      'name': name,
+      'age': age,
+      'email': email,
+      'orders': orders,
+      'phone': phone,
+      'photo': photo,
+      'registerMethod': registerMethod,
+      'reviews': reviews,
+      'userCart': userCart
+    };
   }
 }

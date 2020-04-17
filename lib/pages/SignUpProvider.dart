@@ -1,6 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:park_bark/Models/user.dart';
 import 'package:park_bark/Provider/userProvider.dart';
+import 'package:park_bark/Services/firestore_service.dart';
 import 'package:park_bark/custom_widgets/Commons.dart';
 import 'package:park_bark/pages/loginWithProvider.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,7 @@ class SignUpProvider extends StatefulWidget {
 }
 
 class _SignUpProviderState extends State<SignUpProvider> {
+  FirestoreService _db = FirestoreService();
   final _formKey = GlobalKey<FormState>();
   final _scaffoldstateKey = GlobalKey<ScaffoldState>();
   final TextEditingController _userNameTextController = TextEditingController();
@@ -20,10 +22,11 @@ class _SignUpProviderState extends State<SignUpProvider> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context);
+    final _user = Provider.of<UserProvider>(context);
+
     return Scaffold(
       key: _scaffoldstateKey,
-      body: user.status == Status.Authinticating
+      body: _user.status == Status.Authinticating
           ? CircularProgressIndicator()
           : ListView(
               children: <Widget>[
@@ -115,14 +118,27 @@ class _SignUpProviderState extends State<SignUpProvider> {
                       minWidth: MediaQuery.of(context).size.width,
                       onPressed: () async {
                         if (_formKey.currentState.validate()) {
-                          if (!await user.signUp(
+                          if (!await _user.signUp(
                               _userNameTextController.text,
                               _emailTextController.text,
                               _passwordTextController.text)) {
                             _scaffoldstateKey.currentState.showSnackBar(
                                 SnackBar(content: Text("Sign up failed")));
                           } else {
-                            replaceScreen(context, LandingPage(user.user));
+                            _db.addUser(
+                                _user.user.uid,
+                                User.toJson(
+                                    age: 0,
+                                    email: _user.user.email,
+                                    id: _user.user.uid,
+                                    name: _userNameTextController.text,
+                                    orders: [],
+                                    phone: '',
+                                    photo: '',
+                                    registerMethod: 'email',
+                                    reviews: [],
+                                    userCart: []));
+                            replaceScreen(context, LandingPage());
                           }
                         }
                       },
@@ -158,8 +174,9 @@ class _SignUpProviderState extends State<SignUpProvider> {
                       padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
                       child: MaterialButton(
                         onPressed: () async {
-                          FirebaseUser googleUser = await user.signInGoogle();
-                          replaceScreen(context, LandingPage(googleUser));
+                          _user.signInGoogle().whenComplete(() {
+                            replaceScreen(context, LandingPage());
+                          });
                         },
                         child: Image.asset(
                           "images/fb.png",

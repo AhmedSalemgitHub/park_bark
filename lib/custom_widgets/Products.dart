@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:park_bark/custom_widgets/Commons.dart';
-import 'package:park_bark/pages/ProductDetails.dart';
 import 'package:park_bark/pages/detail_page.dart';
 
 class Products extends StatefulWidget {
