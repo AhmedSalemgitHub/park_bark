@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:park_bark/Models/products.dart';
 import 'package:provider/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -16,7 +17,6 @@ class HomePage extends StatelessWidget {
                 print(products.length);
                 return Stack(
                   children: <Widget>[
-                    
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
@@ -41,10 +41,17 @@ class HomePage extends StatelessWidget {
                         height: 200,
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          child: Image.network(
-                            products[index].picture,
-                            fit: BoxFit.contain,
+                          child: 
+                          CachedNetworkImage(
+                            imageUrl: products[index].picture,
+                            placeholder: (context,url) =>
+                              CircularProgressIndicator(),
+                            errorWidget: (context,url,error) => Icon(Icons.error),
                           ),
+                          // Image.network(
+                          //   products[index].picture,
+                          //   fit: BoxFit.contain,
+                          // ),
                         ),
                       ),
                     ),

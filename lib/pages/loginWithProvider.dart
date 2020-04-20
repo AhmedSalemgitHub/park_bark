@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:park_bark/Provider/userProvider.dart';
-import 'package:park_bark/Services/firestore_service.dart';
 import 'package:park_bark/custom_widgets/Commons.dart';
 import 'package:park_bark/pages/SignUpProvider.dart';
 import 'package:provider/provider.dart';
@@ -143,8 +142,8 @@ class _LogInState extends State<LogIn> {
                                     });
                                   },
                                   child: Image.asset(
-                                    "images/fb.png",
-                                    width: 80,
+                                    "images/google.png",
+                                    width: 50,
                                   ),
                                 ),
                               ),

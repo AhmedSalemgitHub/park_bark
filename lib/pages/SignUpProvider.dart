@@ -155,6 +155,7 @@ class _SignUpProviderState extends State<SignUpProvider> {
                   child: InkWell(
                     child: Text(
                       "Already Have Account? login",
+                      style: TextStyle(fontSize: 20),
                       textAlign: TextAlign.center,
                     ),
                     onTap: () {
@@ -167,21 +168,28 @@ class _SignUpProviderState extends State<SignUpProvider> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Padding(
-                        padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
-                        child: Text("Or sign in with ")),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
-                      child: MaterialButton(
-                        onPressed: () async {
-                          _user.signInGoogle().whenComplete(() {
-                            replaceScreen(context, LandingPage());
-                          });
-                        },
-                        child: Image.asset(
-                          "images/fb.png",
-                          width: 80,
-                        ),
+                    Text(
+                      "Or sign in with ",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    MaterialButton(
+                      onPressed: () async {
+                        _user.signInGoogle().whenComplete(() {
+                          replaceScreen(context, LandingPage());
+                        });
+                      },
+                      child: Row(
+                        children: <Widget>[
+                          Image.asset(
+                            "images/google.png",
+                            width: 30,
+                          ),
+                          SizedBox(width: 8,),
+                          Text(
+                            "Google",
+                            style: TextStyle(fontSize: 30),
+                          ),
+                        ],
                       ),
                     ),
                   ],
