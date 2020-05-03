@@ -1,7 +1,7 @@
 class Product {
   static const ID = "id";
   static const NAME = "name";
-  static const PRICE = "Price";
+  static const PRICE = "price";
   static const BRAND = "brand";
   static const CATEGORY = "category";
   static const DESCREPTION = "description";

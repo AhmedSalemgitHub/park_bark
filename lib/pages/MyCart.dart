@@ -10,16 +10,13 @@ class _MyCartState extends State<MyCart> {
   var prods = [
     {
       "name": "Blazer",
-      "picture": "images/products/blazer1.jpeg",
       "price": 85
     },
     {
       "name": "Blazer",
-      "picture": "images/products/blazer2.jpeg",
       "price": 115
     },    {
       "name": "Dress",
-      "picture": "images/products/dress1.jpeg",
       "price": 200
     },
   ];
@@ -38,7 +35,6 @@ class _MyCartState extends State<MyCart> {
           itemBuilder: (context,int index){
             return CartItem(
               productName: prods[index]["name"],
-              productPicture: prods[index]["picture"],
               productPrice: prods[index]["price"],
             );
           }
@@ -62,13 +58,11 @@ class _MyCartState extends State<MyCart> {
 
 class CartItem extends StatelessWidget {
   final productName;
-  final productPicture;
   final productPrice;
 
   //constructor
   CartItem(
       {this.productName,
-        this.productPicture,
         this.productPrice});
 
   @override
@@ -77,7 +71,7 @@ class CartItem extends StatelessWidget {
       child: ListTile(
         title: Text("$productName"),
         subtitle: Text("\$$productPrice"),
-        leading: Image.asset(productPicture),
+        leading: Icon(Icons.ac_unit),
       ),
     );
   }

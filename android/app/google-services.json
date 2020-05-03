@@ -8,6 +8,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:56865798898:android:c9169cb5a5a452bda26e6b",
+        "android_client_info": {
+          "package_name": "online.thecoder.bark_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56865798898-b7e241juhld2eqe9sb7q5mia8goqmm7s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "online.thecoder.bark_admin",
+            "certificate_hash": "d944ec68352fb2566c56cc0c5552b736a3b20b16"
+          }
+        },
+        {
+          "client_id": "56865798898-fpn1fei0i6pqrt95q7nluaiobb6np7jb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYZ7pnClzOvmMq4lmGAg-X3Q8iJGC7ttw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56865798898-fpn1fei0i6pqrt95q7nluaiobb6np7jb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:56865798898:android:f8fc574cede586cea26e6b",
         "android_client_info": {
           "package_name": "online.thecoder.park_bark"
@@ -15,11 +52,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "56865798898-du40tv3pfeoghrel1o1g3ua1l4v539pc.apps.googleusercontent.com",
+          "client_id": "56865798898-iqudp7319083od3bg8n3aic4cr83eguk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "online.thecoder.park_bark",
-            "certificate_hash": "9613fbe31def609bd70ec6f1d05a04fe0cb680e8"
+            "certificate_hash": "d944ec68352fb2566c56cc0c5552b736a3b20b16"
           }
         },
         {
