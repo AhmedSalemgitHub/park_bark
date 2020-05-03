@@ -3,6 +3,7 @@ import 'package:park_bark/pages/Categories.dart';
 import 'package:park_bark/pages/HomePage.dart';
 import 'package:park_bark/pages/MyCart.dart';
 import 'package:park_bark/pages/MyAccount.dart';
+import 'package:park_bark/pages/under_construction.dart';
 
 class LandingPage extends StatefulWidget {
 
@@ -25,7 +26,8 @@ class _LandingPageState extends State<LandingPage> {
     List<Widget> _pages = <Widget>[
       HomePage(),
       Categories(),
-      MyCart(),
+      UnderConstruction(),
+      //MyCart(),
       MyAccount()
     ];
     return SafeArea(

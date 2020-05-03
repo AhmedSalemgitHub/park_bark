@@ -43,7 +43,7 @@ class UserErrorPage extends StatelessWidget {
                 userProvider.signOut();
                 replaceScreen(context, LogIn());
               },
-              child: Text("Go To Log in Page ",style: TextStyle(color: Colors.white),))
+              child: Text("Go To Log in Page ",style: TextStyle(color: Colors.blue),))
         ],
       ),
     );
@@ -76,7 +76,7 @@ class MainPage extends StatelessWidget {
                     ),
             ),
           ),
-          decoration: BoxDecoration(color: Colors.red),
+          decoration: BoxDecoration(color: Colors.blue),
         ),
         Row(
           children: <Widget>[
