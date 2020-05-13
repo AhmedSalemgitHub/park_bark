@@ -16,99 +16,97 @@ class _CategoriesState extends State<Categories> {
   Widget build(BuildContext context) {
     final products = Provider.of<List<Product>>(context);
     var filter = Provider.of<FilterProvider>(context);
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "categories : ",
-              style: GoogleFonts.righteous(fontSize: 20, color: Colors.blue),
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            "categories : ",
+            style: GoogleFonts.righteous(fontSize: 20, color: Colors.blue),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: <Widget>[
+                Container(
+                  child: Wrap(
+                    spacing: 5.0,
+                    runSpacing: 5.0,
+                    children: <Widget>[
+                      FilterChip(
+                        backgroundColor: Colors.amber,
+                        checkmarkColor: Colors.red,
+                        selectedColor: Colors.greenAccent,
+                        label: Text(
+                          "Breed",
+                          style: GoogleFonts.righteous(
+                              fontSize: 20, color: Colors.blue),
+                        ),
+                        onSelected: (bool value) {
+                          if (value) {
+                            filter.addCategory("Breed");
+                          } else {
+                            filter.removeCategory("Breed");
+                          }
+                        },
+                        selected: filter.categoriesList.contains("Breed")
+                            ? true
+                            : false,
+                      ),
+                      FilterChip(
+                        backgroundColor: Colors.amber,
+                        checkmarkColor: Colors.red,
+                        selectedColor: Colors.greenAccent,
+                        label: Text(
+                          "Vaccines",
+                          style: GoogleFonts.righteous(
+                              fontSize: 20, color: Colors.blue),
+                        ),
+                        onSelected: (bool value) {
+                          if (value) {
+                            filter.addCategory("Vaccines");
+                          } else {
+                            filter.removeCategory("Vaccines");
+                          }
+                        },
+                        selected: filter.categoriesList.contains("Vaccines")
+                            ? true
+                            : false,
+                      ),
+                      FilterChip(
+                        backgroundColor: Colors.amber,
+                        checkmarkColor: Colors.red,
+                        selectedColor: Colors.greenAccent,
+                        label: Text(
+                          "Accessories",
+                          style: GoogleFonts.righteous(
+                            fontSize: 20,
+                            color: Colors.blue,
+                          ),
+                        ),
+                        onSelected: (bool value) {
+                          if (value) {
+                            filter.addCategory("Accessories");
+                          } else {
+                            filter.removeCategory("Accessories");
+                          }
+                        },
+                        selected: filter.categoriesList.contains("Accessories")
+                            ? true
+                            : false,
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    child: Wrap(
-                      spacing: 5.0,
-                      runSpacing: 5.0,
-                      children: <Widget>[
-                        FilterChip(
-                          backgroundColor: Colors.amber,
-                          checkmarkColor: Colors.red,
-                          selectedColor: Colors.greenAccent,
-                          label: Text(
-                            "Breed",
-                            style: GoogleFonts.righteous(
-                                fontSize: 20, color: Colors.blue),
-                          ),
-                          onSelected: (bool value) {
-                            if (value) {
-                              filter.addCategory("Breed");
-                            } else {
-                              filter.removeCategory("Breed");
-                            }
-                          },
-                          selected: filter.categoriesList.contains("Breed")
-                              ? true
-                              : false,
-                        ),
-                        FilterChip(
-                          backgroundColor: Colors.amber,
-                          checkmarkColor: Colors.red,
-                          selectedColor: Colors.greenAccent,
-                          label: Text(
-                            "Vaccines",
-                            style: GoogleFonts.righteous(
-                                fontSize: 20, color: Colors.blue),
-                          ),
-                          onSelected: (bool value) {
-                            if (value) {
-                              filter.addCategory("Vaccines");
-                            } else {
-                              filter.removeCategory("Vaccines");
-                            }
-                          },
-                          selected: filter.categoriesList.contains("Vaccines")
-                              ? true
-                              : false,
-                        ),
-                        FilterChip(
-                          backgroundColor: Colors.amber,
-                          checkmarkColor: Colors.red,
-                          selectedColor: Colors.greenAccent,
-                          label: Text(
-                            "Accessories",
-                            style: GoogleFonts.righteous(
-                              fontSize: 20,
-                              color: Colors.blue,
-                            ),
-                          ),
-                          onSelected: (bool value) {
-                            if (value) {
-                              filter.addCategory("Accessories");
-                            } else {
-                              filter.removeCategory("Accessories");
-                            }
-                          },
-                          selected:
-                              filter.categoriesList.contains("Accessories")
-                                  ? true
-                                  : false,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          Container(
-            height: 300,
+        ),
+        Expanded(
+          child: Container(
             child: products == null
                 ? CircularProgressIndicator()
                 : ListView.builder(
@@ -125,15 +123,16 @@ class _CategoriesState extends State<Categories> {
                           errorWidget: (context, url, error) =>
                               Icon(Icons.error),
                         ),
-                        onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder:(context) => OrderPage()));
-      },
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => OrderPage()));
+                        },
                       ));
                     },
                   ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }

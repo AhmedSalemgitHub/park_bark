@@ -10,42 +10,41 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final products = Provider.of<List<Product>>(context);
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Column(
-        children: [
-          Card(
-            color: Color.fromRGBO(0, 30, 70, 1),
-            child: Container(
-              height: 250,
-              width: double.infinity,
-              child: Center(
-                child: Text(
-                  "Welcome to Bark Park",
-                  style: GoogleFonts.fredokaOne(color: Colors.white,fontSize: 30),
-                  textAlign: TextAlign.center,
+        body: ListView(
+          children: [
+            Card(
+              color: Color.fromRGBO(0, 30, 70, 1),
+              child: Container(
+                height: 180,
+                width: double.infinity,
+                child: Center(
+                  child: Text(
+                    "Welcome to Bark Park",
+                    style:
+                        GoogleFonts.fredokaOne(color: Colors.white, fontSize: 25),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),
-          ),
-          Container(
-            height: 360,
-            child: products == null
-                ? CircularProgressIndicator()
-                : GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2),
-                    itemCount: products.length ?? 1,
-                    itemBuilder: (context, index) {
-                      return Container(
-                          child: Card(
-                        child: CustomGridItem(product: products[index]),
-                      ));
-                    }),
-          ),
-        ],
-      ),
-    ));
+            Container(
+              height: MediaQuery.of(context).size.height*0.6,
+              child: products == null
+                  ? CircularProgressIndicator()
+                  : GridView.builder(
+                      physics: AlwaysScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2),
+                      itemCount: products.length ?? 1,
+                      itemBuilder: (context, index) {
+                        return Container(
+                            child: Card(
+                          child: CustomGridItem(product: products[index]),
+                        ));
+                      }),
+            ),
+          ],
+        ));
   }
 }
 
@@ -60,10 +59,11 @@ class CustomGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder:(context) => OrderPage()));
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => OrderPage()));
       },
-          child: GridTile( 
+      child: GridTile(
         header: Container(
           child: Padding(
             padding: const EdgeInsets.only(left: 8.0),
