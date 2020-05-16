@@ -11,11 +11,11 @@ class FilterProvider with ChangeNotifier {
   //getters
   List<String> get categoriesList => _categoriesList;
 
-  //setters
-  void _setCategoriesList(List<String> categoresList){
-    _categoriesList = categoresList;
-    notifyListeners();
-  }
+  // //setters
+  // void _setCategoriesList(List<String> categoresList){
+  //   _categoriesList = categoresList;
+  //   notifyListeners();
+  // }
 
   void addCategory(String category){
     if (!_categoriesList.contains(category)) {

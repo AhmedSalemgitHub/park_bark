@@ -5,13 +5,11 @@ import 'package:park_bark/pages/MyAccount.dart';
 import 'package:park_bark/pages/under_construction.dart';
 
 class LandingPage extends StatefulWidget {
-
   @override
   _LandingPageState createState() => _LandingPageState();
 }
 
 class _LandingPageState extends State<LandingPage> {
-
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -30,18 +28,15 @@ class _LandingPageState extends State<LandingPage> {
       MyAccount()
     ];
     return SafeArea(
-      bottom: true,
       child: Scaffold(
-
-        body:_pages.elementAt(_selectedIndex),
+        body: Container(child: _pages.elementAt(_selectedIndex)),
         bottomNavigationBar: BottomNavigationBar(
-
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.home,
                 ),
-                title: Text('Home')),
+                title: Text('Home',)),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.category,
@@ -60,20 +55,21 @@ class _LandingPageState extends State<LandingPage> {
           ],
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
-          iconSize: 20,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.blueGrey,
+          iconSize: 24,
+          selectedItemColor: Colors.brown[900],
+          unselectedItemColor: Colors.blue[100],
           selectedFontSize: 12,
-          unselectedFontSize: 10,
+          unselectedFontSize: 11,
           showSelectedLabels: true,
           showUnselectedLabels: true,
-          selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+          selectedLabelStyle: null,
           unselectedLabelStyle: null,
           elevation: 10,
+          type: BottomNavigationBarType.fixed,
+          //backgroundColor: Colors.brown[200],
+          
         ),
       ),
     );
   }
 }
-
-
