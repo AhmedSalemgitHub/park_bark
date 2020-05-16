@@ -20,11 +20,11 @@ class _LogInState extends State<LogIn> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context);
+    final _user = Provider.of<UserProvider>(context);
 
     return Scaffold(
       key: _scaffoldstateKey,
-      body:Center(child: user.status == Status.Authinticating
+      body:Center(child: _user.status == Status.Authinticating
           ? CircularProgressIndicator()
           : SingleChildScrollView(
               child: Column(
@@ -87,7 +87,7 @@ class _LogInState extends State<LogIn> {
                               minWidth: MediaQuery.of(context).size.width,
                               onPressed: () async {
                                 if (_formKey.currentState.validate()) {
-                                  if (!await user.signIn(
+                                  if (!await _user.signIn(
                                       _emailTextController.text,
                                       _passwordTextController.text)) {
                                     _scaffoldstateKey.currentState.showSnackBar(
@@ -121,39 +121,37 @@ class _LogInState extends State<LogIn> {
                             },
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Padding(
-                                padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
-                                child: Text("Or sign in with ")),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(14, 8, 14, 8),
-                              child: MaterialButton(
-                                onPressed: () async {
-                                  user.signInGoogle().whenComplete(() {
-                                    replaceScreen(context, LandingPage());
-                                  });
-                                },
-                                child: Row(
-                                  children: <Widget>[
-                                    Image.asset(
-                                      "images/google.png",
-                                      width: 30,
-                                    ),
-                                    SizedBox(
-                                      width: 8,
-                                    ),
-                                    Text(
-                                      "Google",
-                                      style: TextStyle(fontSize: 30),
-                                    ),
-                                  ],
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Text(
+                            "Or sign in with ",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          MaterialButton(
+                            onPressed: () async {
+                              _user.signInGoogle().whenComplete(() {
+                                replaceScreen(context, LandingPage());
+                              });
+                            },
+                            child: Row(
+                              children: <Widget>[
+                                Image.asset(
+                                  "images/google.png",
+                                  width: 30,
                                 ),
-                              ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  "Google",
+                                  style: TextStyle(fontSize: 30),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
+                      ),
                       ],
                     ),
                   ),

@@ -36,19 +36,11 @@ class _SignUpProviderState extends State<SignUpProvider> {
                         key: _formKey,
                         child: Column(
                           children: <Widget>[
-// #### The Intro Welcome Text #### //
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(
-                                  8.0, 16.0, 8.0, 8.0),
-                              child: Text("Welcome",
-                                  style: TextStyle(
-                                      fontSize: 30.0, color: Colors.blueGrey)),
-                            ),
 // #### The Intro Icon #### //
                             Padding(
-                              padding: EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(8.0),
                               child: CircleAvatar(
-                                radius: 50.0,
+                                radius: 60,
                                 child: Image.asset('assets/images/icon.png'),
                                 backgroundColor: Colors.amber,
                               ),
