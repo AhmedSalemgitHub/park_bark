@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:park_bark/Models/products.dart';
+import 'package:park_bark/pages/detail_page.dart';
 import 'package:park_bark/pages/order_page.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -53,7 +54,7 @@ class CustomGridItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => OrderPage()));
+            .push(MaterialPageRoute(builder: (context) => DetailsPage(product: product,)));
       },
       child: GridTile(
         header: Container(
